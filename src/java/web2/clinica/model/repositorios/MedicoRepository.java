@@ -7,31 +7,41 @@ import java.util.List;
 import java.util.Optional;
 
 public class MedicoRepository {
-    private List<Medico> medicos = new ArrayList<>();
+    private static List<Medico> medicos = new ArrayList<>();
 
-    public void salvar(Medico medico) {
+    public static void salvar(Medico medico) {
         medicos.add(medico);
     }
 
-    public List<Medico> listarTodos() {
+    public static List<Medico> listarTodos() {
         return medicos;
     }
 
-    public Optional<Medico> buscarPorCrm(String crm) {
+    public static Optional<Medico> buscarPorCrm(String crm) {
         return medicos.stream()
                 .filter(m -> m.getCrm().equals(crm))
                 .findFirst();
     }
 
-    public void atualizar(Medico medico) {
+    public Medico login(String crm, String senha) {
+        for (Medico m : this.medicos) {
+            if (m.getCrm().equals(crm) && m.getSenha().equals(senha)) {
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public static void atualizar(Medico medico) {
         buscarPorCrm(medico.getCrm()).ifPresent(m -> {
             m.setNome(medico.getNome());
             m.setEspecialidade(medico.getEspecialidade());
             m.setContato(medico.getContato());
+            m.setSenha(medico.getSenha());
         });
     }
 
-    public void deletar(String crm) {
+    public static void deletar(String crm) {
         medicos.removeIf(m -> m.getCrm().equals(crm));
     }
 }

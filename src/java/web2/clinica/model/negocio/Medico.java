@@ -5,12 +5,22 @@ public class Medico {
     private String nome;
     private String especialidade;
     private String contato;
+    private String senha;
 
-    public Medico(String crm, String nome, String especialidade, String contato) {
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public Medico(String crm, String nome, String especialidade, String contato, String senha) {
         this.crm = crm;
         this.nome = nome;
         this.especialidade = especialidade;
         this.contato = contato;
+        this.senha = senha;
     }
     
     public String getContato() {

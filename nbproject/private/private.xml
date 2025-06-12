@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/web/CadastroMedico.html</file>
-            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/web/CadastroPaciente.html</file>
-            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/src/java/web2/clinica/controllers/CadastroPaciente.java</file>
-            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/src/java/web2/clinica/controllers/CadastroMedico.java</file>
-            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/web/CadastroIndicadorExame.html</file>
+            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/web/index.html</file>
+            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/src/java/web2/clinica/controllers/CadastroIndicadorExame.java</file>
         </group>
     </open-files>
 </project-private>
