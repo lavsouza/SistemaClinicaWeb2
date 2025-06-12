@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package web2.clinica.controllers;
+package web2.clinica.controllers.medico;
 
 import web2.clinica.model.negocio.Medico;
 import web2.clinica.model.repositorios.MedicoRepository;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Optional;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
