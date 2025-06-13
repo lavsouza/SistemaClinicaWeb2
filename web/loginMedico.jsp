@@ -22,7 +22,7 @@
     <div>
         <button type="submit" class="btn btn-primary">Entrar</button>
         <a href="CadastroAlteracaoMedico.jsp" class="btn btn-secondary">Cadastre-se</a>
-        <a href="../index.html" class="btn btn-secondary">Voltar ao menu</a>
+        <a href="index.html" class="btn btn-secondary">Voltar ao menu</a>
     </div>
 
 </form>

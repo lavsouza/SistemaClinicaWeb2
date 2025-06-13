@@ -30,7 +30,7 @@
     <button class="btn btn-success mb-3"
             data-bs-toggle="modal" data-bs-target="#modalCadastro">Novo Médico</button>
 
-    <a class="btn btn-success mb-3" href="../index.html">Voltar ao Menu</a>
+    <a class="btn btn-success mb-3" href="index.html">Voltar ao Menu</a>
 
 
     <%

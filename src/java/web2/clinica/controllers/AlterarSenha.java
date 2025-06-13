@@ -1,4 +1,4 @@
-package web2.clinica.controllers.medico;
+package web2.clinica.controllers;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpSession;
 import web2.clinica.model.negocio.Medico;
 import web2.clinica.model.repositorios.MedicoRepository;
 
-@WebServlet("/EditarPerfil")
-public class EditarPerfil extends HttpServlet {
+@WebServlet("/AlterarSenha")
+public class AlterarSenha extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -24,17 +24,16 @@ public class EditarPerfil extends HttpServlet {
             return;
         }
 
-        String nome = request.getParameter("nome");
-        String especialidade = request.getParameter("especialidade");
-        String contato = request.getParameter("contato");
+        String novaSenha = request.getParameter("novaSenha");
 
-        medico.setNome(nome);
-        medico.setEspecialidade(especialidade);
-        medico.setContato(contato);
+        if (novaSenha != null && !novaSenha.isEmpty()) {
+            medico.setSenha(novaSenha);
+            MedicoRepository.atualizar(medico);
+            session.setAttribute("msgSenha", "Senha atualizada com sucesso!");
+        } else {
+            session.setAttribute("msgSenha", "A senha não pode ser vazia.");
+        }
 
-        MedicoRepository.atualizar(medico);
-
-        session.setAttribute("msgPerfil", "Perfil atualizado com sucesso!");
-        response.sendRedirect("EditarPerfil.jsp");
+        response.sendRedirect("AlterarSenha.jsp");
     }
 }

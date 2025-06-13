@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package web2.clinica.controllers.medico;
+package web2.clinica.controllers;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
