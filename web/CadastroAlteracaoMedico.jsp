@@ -50,9 +50,14 @@
                value="<%= (request.getAttribute("op") != null) ? ((Medico) request.getAttribute("medico")).getSenha() : "" %>" required/>
     </div>
 
-    <button class="btn btn-primary" type="submit">
-        <%= (request.getAttribute("op") != null) ? "Alterar" : "Cadastrar" %>
-    </button>
+    <div>
+        <button class="btn btn-primary" type="submit">
+            <%= (request.getAttribute("op") != null) ? "Alterar" : "Cadastrar" %>
+        </button>
+        <a class="btn btn-primary" href=<%= (request.getAttribute("op") != null) ? "TelaInicialMedico.jsp" : "LoginMedico.jsp" %>>Voltar</a>
+    </div>
+
+
 
 
 </form>

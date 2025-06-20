@@ -45,7 +45,6 @@
                 <th>Nome</th>
                 <th>Especialidade</th>
                 <th>Contato</th>
-                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -58,10 +57,6 @@
                 <td><%= m.getNome() %></td>
                 <td><%= m.getEspecialidade() %></td>
                 <td><%= m.getContato() %></td>
-                <td>
-                    <a href="MedicoJSP?crm=<%= m.getCrm() %>" class="btn btn-warning btn-sm">Alterar</a>
-                    <a href="MedicoJSP?crm=<%= m.getCrm() %>&op=deletar" class="btn btn-danger btn-sm">Deletar</a>
-                </td>
             </tr>
         <%
                 }
