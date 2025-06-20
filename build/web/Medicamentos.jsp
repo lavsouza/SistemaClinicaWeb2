@@ -30,7 +30,7 @@
 <button class="btn btn-success mb-3"
         data-bs-toggle="modal" data-bs-target="#modalCadastro">Novo Medicamento</button>
 
-<a class="btn btn-success mb-3" href="TelaInicialMedico.jsp">Voltar</a>
+<a class="btn btn-secondary mb-3" href="TelaInicialMedico.jsp">Voltar</a>
 
 <%
     List<Medicamento> medicamentos = (List) session.getAttribute("medicamentos");
