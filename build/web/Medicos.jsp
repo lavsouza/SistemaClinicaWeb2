@@ -80,6 +80,9 @@
                             aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <%
+                        request.setAttribute("modal", true); // ou session.setAttribute se for necessário
+                    %>
                     <%@include file="CadastroAlteracaoMedico.jsp" %>
                 </div>
             </div>

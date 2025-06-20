@@ -29,11 +29,11 @@ public class AlterarSenha extends HttpServlet {
         if (novaSenha != null && !novaSenha.isEmpty()) {
             medico.setSenha(novaSenha);
             MedicoRepository.atualizar(medico);
-            session.setAttribute("msgSenha", "Senha atualizada com sucesso!");
+            session.setAttribute("msg", "Senha atualizada com sucesso!");
         } else {
-            session.setAttribute("msgSenha", "A senha não pode ser vazia.");
+            session.setAttribute("msg", "A senha não pode ser vazia.");
         }
 
-        response.sendRedirect("AlterarSenha.jsp");
+        response.sendRedirect("TelaInicialMedico.jsp");
     }
 }

@@ -24,11 +24,5 @@
     <button type="submit" class="btn btn-primary">Salvar</button>
     <a href="TelaInicialMedico.jsp" class="btn btn-secondary">Cancelar</a>
 </form>
-
-<% if (session.getAttribute("msgSenha") != null) { %>
-<div class="alert alert-info mt-3"><%= session.getAttribute("msgSenha") %></div>
-<% session.removeAttribute("msgSenha"); %>
-<% } %>
-
 </body>
 </html>

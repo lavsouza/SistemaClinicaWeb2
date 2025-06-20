@@ -54,10 +54,16 @@
         <button class="btn btn-primary" type="submit">
             <%= (request.getAttribute("op") != null) ? "Alterar" : "Cadastrar" %>
         </button>
-        <a class="btn btn-primary" href=<%= (request.getAttribute("op") != null) ? "TelaInicialMedico.jsp" : "LoginMedico.jsp" %>>Voltar</a>
+
+        <%
+            Boolean isModal = (Boolean) request.getAttribute("modal");
+            if (isModal == null) isModal = false;
+        %>
+
+        <% if (!isModal) { %>
+        <a href="<%= (request.getAttribute("op") != null) ? "TelaInicialMedico.jsp" : "LoginMedico.jsp" %>" class="btn btn-secondary">Voltar</a>
+        <% } %>
     </div>
-
-
 
 
 </form>
