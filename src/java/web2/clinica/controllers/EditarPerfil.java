@@ -34,7 +34,7 @@ public class EditarPerfil extends HttpServlet {
 
         MedicoRepository.atualizar(medico);
 
-        session.setAttribute("msgPerfil", "Perfil atualizado com sucesso!");
-        response.sendRedirect("EditarPerfil.jsp");
+        session.setAttribute("msg", "Perfil atualizado com sucesso!");
+        response.sendRedirect("TelaInicialMedico.jsp");
     }
 }

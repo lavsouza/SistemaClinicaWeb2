@@ -35,11 +35,5 @@
     <button type="submit" class="btn btn-success">Salvar</button>
     <a href="TelaInicialMedico.jsp" class="btn btn-secondary">Cancelar</a>
 </form>
-
-<% if (session.getAttribute("msgPerfil") != null) { %>
-<div class="alert alert-info mt-3"><%= session.getAttribute("msgPerfil") %></div>
-<% session.removeAttribute("msgPerfil"); %>
-<% } %>
-
 </body>
 </html>
