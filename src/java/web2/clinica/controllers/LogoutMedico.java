@@ -22,7 +22,7 @@ public class LogoutMedico extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getSession().invalidate();
-        response.sendRedirect("loginMedico.jsp");
+        response.sendRedirect("LoginMedico.jsp");
     }
 
 }

@@ -36,7 +36,7 @@ public class LoginMedico extends HttpServlet {
             response.sendRedirect("TelaInicialMedico.jsp");
         } else {
             request.getSession().setAttribute("erroLogin", "CRM ou senha inválidos.");
-            response.sendRedirect("loginMedico.jsp");
+            response.sendRedirect("LoginMedico.jsp");
         }
     }
 

@@ -30,7 +30,7 @@
 <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#modalCadastro">
     Novo Indicador
 </button>
-<a class="btn btn-secondary mb-3" href="index.html">Voltar ao Menu</a>
+<a class="btn btn-secondary mb-3" href="TelaInicialMedico.jsp"></a>
 
 <%
     List<IndicadorExame> indicadores = (List) session.getAttribute("indicadores");

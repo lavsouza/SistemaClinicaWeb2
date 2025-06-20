@@ -57,7 +57,7 @@
         <button class="btn btn-primary" type="submit">
             <%= alteracao ? "Alterar" : "Cadastrar" %>
         </button>
-        <a class="btn btn-primary" href="index.html">Voltar ao Menu</a>
+        <a class="btn btn-primary" href="TelaInicialMedico.jsp">Voltar</a>
     </div>
 
 

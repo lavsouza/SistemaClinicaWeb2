@@ -20,7 +20,7 @@ public class AlterarSenha extends HttpServlet {
         Medico medico = (Medico) session.getAttribute("medicoLogado");
 
         if (medico == null) {
-            response.sendRedirect("loginMedico.jsp");
+            response.sendRedirect("LoginMedico.jsp");
             return;
         }
 
