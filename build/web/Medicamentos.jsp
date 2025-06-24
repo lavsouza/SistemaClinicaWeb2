@@ -1,6 +1,8 @@
 <%@page import="web2.clinica.model.negocio.Medicamento"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="web2" uri="web2.clinica.customTags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +12,8 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body class="container mt-4">
+    
+<web2:carregaTag entidade="medicamento" var="medicamentos" escopo="pagina" />
 
 <h2 class="mb-4">Lista de Medicamentos</h2>
 
@@ -26,24 +30,22 @@
     }
 %>
 
-<!-- Botão novo medicamento -->
 <button class="btn btn-success mb-3"
         data-bs-toggle="modal" data-bs-target="#modalCadastro">Novo Medicamento</button>
 
 <a class="btn btn-secondary mb-3" href="TelaInicialMedico.jsp">Voltar</a>
 
 <%
-    List<Medicamento> medicamentos = (List) session.getAttribute("medicamentos");
+   List<Medicamento> medicamentos = (List) pageContext.getAttribute("medicamentos");
 %>
 
-<!-- Tabela de Medicamentos -->
 <table class="table table-striped table-bordered">
     <thead class="table-dark">
     <tr>
         <th>Código</th>
         <th>Nome</th>
         <th>Dosagem</th>
-        <th>Tipo</th>
+        <th>Tipo de Dosagem</th>
         <th>Descrição</th>
         <th>Observação</th>
         <th>Ações</th>
@@ -88,6 +90,9 @@
                         aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <%
+                    request.setAttribute("modal", true);
+                %>
                 <%@include file="CadastroAlteracaoMedicamento.jsp" %>
             </div>
         </div>

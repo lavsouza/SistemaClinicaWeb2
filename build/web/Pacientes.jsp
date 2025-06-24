@@ -1,6 +1,8 @@
 <%@page import="web2.clinica.model.negocio.Paciente"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="web2" uri="web2.clinica.customTags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +12,8 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body class="container mt-4">
+    
+<web2:carregaTag entidade="paciente" var="pacientes" escopo="pagina" />
 
 <h2 class="mb-4">Lista de Pacientes</h2>
 
@@ -26,17 +30,15 @@
     }
 %>
 
-<!-- Botão novo paciente -->
 <button class="btn btn-success mb-3"
         data-bs-toggle="modal" data-bs-target="#modalCadastro">Novo Paciente</button>
 
 <a class="btn btn-secondary mb-3" href="TelaInicialMedico.jsp">Voltar</a>
 
 <%
-    List<Paciente> pacientes = (List) session.getAttribute("pacientes");
+    List<Paciente> pacientes = (List) pageContext.getAttribute("pacientes");
 %>
 
-<!-- Tabela de Pacientes -->
 <table class="table table-striped table-bordered">
     <thead class="table-dark">
     <tr>
@@ -75,7 +77,6 @@
     </tbody>
 </table>
 
-<!-- Modal de cadastro/edição -->
 <div class="modal fade" id="modalCadastro" data-bs-backdrop="static" data-bs-keyboard="false"
      tabindex="-1" aria-labelledby="modalCadastroLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -86,6 +87,9 @@
                         aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <%
+                    request.setAttribute("modal", true);
+                %>
                 <%@include file="CadastroAlteracaoPaciente.jsp" %>
             </div>
         </div>

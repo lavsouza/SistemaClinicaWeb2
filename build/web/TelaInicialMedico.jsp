@@ -88,7 +88,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Indicadores de Exame</h5>
                             <a href="CadastroAlteracaoIndicadorExame.jsp" class="btn btn-primary mb-2">Cadastrar</a>
-                            <a href="IndicadoreExameJSP" class="btn btn-outline-primary">Listar</a>
+                            <a href="IndicadorExameJSP" class="btn btn-outline-primary">Listar</a>
                         </div>
                     </div>
                 </div>

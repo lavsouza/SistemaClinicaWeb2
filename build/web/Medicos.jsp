@@ -81,7 +81,7 @@
                 </div>
                 <div class="modal-body">
                     <%
-                        request.setAttribute("modal", true); // ou session.setAttribute se for necessário
+                        request.setAttribute("modal", true);
                     %>
                     <%@include file="CadastroAlteracaoMedico.jsp" %>
                 </div>
