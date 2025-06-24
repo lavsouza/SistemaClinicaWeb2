@@ -8,7 +8,15 @@ import java.util.Optional;
 
 public class MedicoRepository {
     private static List<Medico> medicos = new ArrayList<>();
-
+    
+    static {
+        medicos.add(new Medico("123456", "Dr. João Silva", "Cardiologia", "joao@clinica.com", "teste"));
+        medicos.add(new Medico("234567", "Dra. Ana Lima", "Pediatria", "ana@clinica.com", "teste"));
+        medicos.add(new Medico("345678", "Dr. Pedro Rocha", "Ortopedia", "pedro@clinica.com", "teste"));
+        medicos.add(new Medico("456789", "Dra. Carla Nunes", "Dermatologia", "carla@clinica.com", "teste"));
+        medicos.add(new Medico("567890", "Dr. Lucas Almeida", "Neurologia", "lucas@clinica.com", "teste"));
+    }
+    
     public static void salvar(Medico medico) {
         medicos.add(medico);
     }

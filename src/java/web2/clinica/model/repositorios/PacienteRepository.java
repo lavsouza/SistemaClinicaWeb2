@@ -10,7 +10,15 @@ public class PacienteRepository  {
     private static List<Paciente> paciente;
 
     static {
-        PacienteRepository .paciente = new ArrayList<>();
+        PacienteRepository.paciente = new ArrayList<>();
+    }
+    
+    static {
+        paciente.add(new Paciente("111.111.111-11", "Maria Souza", "Rua A", "11-9999-0001", "Unimed"));
+        paciente.add(new Paciente("222.222.222-22", "Carlos Silva", "Rua B", "11-9999-0002", "Bradesco"));
+        paciente.add(new Paciente("333.333.333-33", "Fernanda Rocha", "Rua C", "11-9999-0003", "Amil"));
+        paciente.add(new Paciente("444.444.444-44", "Ricardo Lima", "Rua D", "11-9999-0004", "SulAmérica"));
+        paciente.add(new Paciente("555.555.555-55", "Juliana Costa", "Rua E", "11-9999-0005", "Porto Seguro"));
     }
 
     public void salvar(Paciente novoPaciente) {

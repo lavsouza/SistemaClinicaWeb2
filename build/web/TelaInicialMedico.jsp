@@ -59,7 +59,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Pacientes</h5>
                             <a href="CadastroAlteracaoPaciente.jsp" class="btn btn-primary mb-2">Cadastrar</a>
-                            <a href="Pacientes.jsp" class="btn btn-outline-primary">Listar</a>
+                            <a href="PacienteJSP" class="btn btn-outline-primary">Listar</a>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">Médicos</h5>
-                            <a href="Medicos.jsp" class="btn btn-outline-primary">Listar</a>
+                            <a href="MedicoJSP" class="btn btn-outline-primary">Listar</a>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Medicamentos</h5>
                             <a href="CadastroAlteracaoMedicamento.jsp" class="btn btn-primary mb-2">Cadastrar</a>
-                            <a href="Medicamentos.jsp" class="btn btn-outline-primary">Listar</a>
+                            <a href="MedicamentoJSP" class="btn btn-outline-primary">Listar</a>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Indicadores de Exame</h5>
                             <a href="CadastroAlteracaoIndicadorExame.jsp" class="btn btn-primary mb-2">Cadastrar</a>
-                            <a href="IndicadoresExame.jsp" class="btn btn-outline-primary">Listar</a>
+                            <a href="IndicadoreExameJSP" class="btn btn-outline-primary">Listar</a>
                         </div>
                     </div>
                 </div>

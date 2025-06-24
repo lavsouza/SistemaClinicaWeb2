@@ -23,6 +23,8 @@
         <button type="submit" class="btn btn-primary">Entrar</button>
         <a href="CadastroAlteracaoMedico.jsp" class="btn btn-secondary">Cadastre-se</a>
     </div>
+    
+    <a href="CarregaTagJSP.jsp" class="btn btn-secondary">Tags</a>
 
 </form>
 
