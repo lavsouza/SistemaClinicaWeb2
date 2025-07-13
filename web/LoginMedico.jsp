@@ -24,9 +24,9 @@
             <div>
                 <button type="submit" class="btn btn-primary">Entrar</button>
                 <a href="CadastroAlteracaoMedico.jsp" class="btn btn-secondary">Cadastre-se</a>
-            </div>
+                <a href="TelaInicial.html" class="btn btn-secondary">Voltar</a>
 
-            <a href="CarregaTagJSP.jsp" class="btn btn-secondary mt-2">Tags</a>
+            </div>
         </form>
 
         <c:if test="${not empty sessionScope.erroLogin}">

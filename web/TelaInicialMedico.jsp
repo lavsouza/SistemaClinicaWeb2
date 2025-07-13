@@ -16,7 +16,7 @@
     </head>
     <body class="bg-light">
         <div class="container mt-5">
-
+            
             <c:if test="${not empty sessionScope.msg}">
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
                     ${sessionScope.msg}
@@ -88,6 +88,38 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="mt-5">
+                <h4>Consultas Ainda Não Realizadas</h4>
+                <c:if test="${empty sessionScope.consultasSemProntuario}">
+                    <p class="text-muted">Nenhuma consulta pendente.</p>
+                </c:if>
+                <c:forEach var="c" items="${sessionScope.consultasSemProntuario}">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <strong>Paciente:</strong> ${c.paciente.nome}<br>
+                            <strong>Data:</strong> ${c.dataHora}<br>
+                            <a href="DetalharConsulta.jsp?codigo=${c.codigo}" class="btn btn-primary btn-sm mt-2">Visualizar</a>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
+            <div class="mt-5">
+                <h4>Consultas Realizadas</h4>
+                <c:if test="${empty sessionScope.consultasComProntuario}">
+                    <p class="text-muted">Nenhuma consulta realizada.</p>
+                </c:if>
+                <c:forEach var="c" items="${sessionScope.consultasComProntuario}">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <strong>Paciente:</strong> ${c.paciente.nome}<br>
+                            <strong>Data:</strong> ${c.dataHora}<br>
+                            <a href="DetalharConsulta.jsp?codigo=${c.codigo}" class="btn btn-secondary btn-sm mt-2">Visualizar</a>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
 
         </div>

@@ -82,6 +82,18 @@ public class CarregaTag extends SimpleTagSupport {
                     resultado = indicadorRepo.listarTodos();
                 }
                 break;
+            case "consulta":
+                ConsultaRepository consultaRepo = new ConsultaRepository();
+                if (id != null) {
+                    try {
+                        resultado = consultaRepo.buscarPorCodigo(Integer.parseInt(id)).orElse(null);
+                    } catch (NumberFormatException e) {
+                        resultado = null;
+                    }
+                } else {
+                    resultado = consultaRepo.listarTodas();
+                }
+                break;
         }
 
         int scope = PageContext.PAGE_SCOPE;

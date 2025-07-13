@@ -25,7 +25,6 @@
             Paciente
         </h1>
 
-        <%-- Carregamento da tag, se necessário --%>
     <c:if test="${not empty param.cpf}">
         <web2:carregaTag entidade="paciente" var="paciente" escopo="requisicao" id="${param.cpf}" />
         <c:set var="op" value="alterar" />

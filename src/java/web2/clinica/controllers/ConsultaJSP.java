@@ -1,0 +1,102 @@
+package web2.clinica.controllers;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import web2.clinica.model.negocio.Consulta;
+import web2.clinica.model.negocio.Medico;
+import web2.clinica.model.negocio.Paciente;
+import web2.clinica.model.repositorios.MedicoRepository;
+import web2.clinica.model.repositorios.PacienteRepository;
+import web2.clinica.model.repositorios.ConsultaRepository;
+
+@WebServlet(name = "ConsultaJSP", urlPatterns = {"/ConsultaJSP"})
+public class ConsultaJSP extends HttpServlet {
+
+    private ConsultaRepository consultaRepo = new ConsultaRepository();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String codParam = request.getParameter("codigo");
+        String operacao = request.getParameter("op");
+
+        if (operacao != null && operacao.equals("deletar")) {
+            int codigo = Integer.parseInt(codParam);
+            consultaRepo.deletar(codigo);
+            request.getSession().setAttribute("msg", "Consulta excluída com sucesso!");
+            response.sendRedirect("ConsultaJSP");
+            return;
+        }
+
+        if (codParam != null) {
+            int codigo = Integer.parseInt(codParam);
+            Optional<Consulta> c = consultaRepo.buscarPorCodigo(codigo);
+            if (c.isPresent()) {
+                String[] partes = c.get().getDataHora().split(" : ");
+                request.setAttribute("data", partes[0]);
+                request.setAttribute("hora", partes[1]);
+                request.setAttribute("consulta", c.get());
+                request.setAttribute("op", "alterar");
+                getServletContext()
+                        .getRequestDispatcher("/CadastroConsulta.jsp")
+                        .forward(request, response);
+            } else {
+                response.sendRedirect("ConsultaJSP");
+            }
+            return;
+        }
+
+        List<Consulta> consultas = consultaRepo.listarTodas();
+        request.getSession().setAttribute("consultas", consultas);
+        response.sendRedirect("Consultas.jsp"); // ajustado para redirecionar para a lista
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String operation = request.getParameter("op");
+        String data = request.getParameter("data");
+        String hora = request.getParameter("hora");
+        String cpf = request.getParameter("cpf");
+        String crm = request.getParameter("crm");
+
+        String dataHora = data + " : " + hora;
+        Optional<Medico> medico = MedicoRepository.buscarPorCrm(crm);
+        Optional<Paciente> paciente = PacienteRepository.buscarPorCpf(cpf);
+
+        if (!medico.isPresent() || !paciente.isPresent()) {
+            request.getSession().setAttribute("msg", "Erro: Médico ou paciente não encontrado.");
+            response.sendRedirect("CadastroConsulta.jsp");
+            return;
+        }
+
+        int codigo = Integer.parseInt(request.getParameter("codigo"));
+        
+        Consulta c = new Consulta(codigo, dataHora, medico.get(), paciente.get());
+
+        if ("alterar".equals(operation)) {
+            consultaRepo.deletar(codigo);
+            consultaRepo.salvar(c);
+            request.getSession().setAttribute("msg", "Consulta atualizada com sucesso!");
+        } else {
+            consultaRepo.salvar(c);
+            request.getSession().setAttribute("msg", "Consulta cadastrada com sucesso!");
+        }
+
+        response.sendRedirect("ConsultaJSP");
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Servlet responsável por gerenciar CRUD de consultas";
+    }
+}

@@ -8,6 +8,6 @@
     </session-config>
 
     <welcome-file-list>
-        <welcome-file>/LoginMedico.jsp</welcome-file>
+        <welcome-file>/TelaInicial.html</welcome-file>
     </welcome-file-list>
 </web-app>

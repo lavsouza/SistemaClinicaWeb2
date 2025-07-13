@@ -11,8 +11,13 @@ public class Consulta {
     private Medico medico;
     private Paciente paciente;
     private Prontuario prontuario;
-    private Receituario receituario;
-    private Exame exame;
+
+    public Consulta(int codigo, String dataHora, Medico medico, Paciente paciente) {
+        this.codigo = codigo;
+        this.dataHora = dataHora;
+        this.medico = medico;
+        this.paciente = paciente;
+    }
 
     public Prontuario getProntuario() {
         return prontuario;
@@ -20,22 +25,6 @@ public class Consulta {
 
     public void setProntuario(Prontuario prontuario) {
         this.prontuario = prontuario;
-    }
-
-    public Receituario getReceituario() {
-        return receituario;
-    }
-
-    public void setReceituario(Receituario receituario) {
-        this.receituario = receituario;
-    }
-
-    public Exame getExame() {
-        return exame;
-    }
-
-    public void setExame(Exame exame) {
-        this.exame = exame;
     }
 
     public Paciente getPaciente() {

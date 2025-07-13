@@ -29,7 +29,7 @@ public class PacienteRepository  {
         return paciente;
     }
 
-    public Optional<Paciente> buscarPorCpf(String cpf) {
+    public static Optional<Paciente> buscarPorCpf(String cpf) {
         return paciente.stream()
                 .filter(p -> p.getCpf().equals(cpf))
                 .findFirst();
