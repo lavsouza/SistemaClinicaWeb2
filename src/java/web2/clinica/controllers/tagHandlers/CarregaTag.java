@@ -91,7 +91,7 @@ public class CarregaTag extends SimpleTagSupport {
             case "sessao": scope = PageContext.SESSION_SCOPE; break;
             case "aplicacao": scope = PageContext.APPLICATION_SCOPE; break;
         }
-
+        
         getJspContext().setAttribute(var, resultado, scope);
     }
 }
