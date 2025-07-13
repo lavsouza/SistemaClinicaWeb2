@@ -36,6 +36,29 @@ public class ConsultaJSP extends HttpServlet {
             return;
         }
 
+        if (operacao != null && operacao.equals("visualizar")) {
+            int codigo = Integer.parseInt(codParam);
+            Optional<Consulta> consultaOpt = consultaRepo.buscarPorCodigo(codigo);
+
+            if (consultaOpt.isPresent()) {
+                Consulta consulta = consultaOpt.get();
+                // Divide a dataHora para exibição no formulário
+                String[] partes = consulta.getDataHora().split(" : ");
+
+                request.setAttribute("data", partes[0]);
+                request.setAttribute("hora", partes.length > 1 ? partes[1] : "");
+                request.setAttribute("consulta", consulta);
+
+                getServletContext()
+                        .getRequestDispatcher("/DetalharConsulta.jsp")
+                        .forward(request, response);
+            } else {
+                request.getSession().setAttribute("msg", "Consulta não encontrada!");
+                response.sendRedirect("ConsultaJSP");
+            }
+            return;
+        }
+
         if (codParam != null) {
             int codigo = Integer.parseInt(codParam);
             Optional<Consulta> c = consultaRepo.buscarPorCodigo(codigo);
@@ -46,7 +69,7 @@ public class ConsultaJSP extends HttpServlet {
                 request.setAttribute("consulta", c.get());
                 request.setAttribute("op", "alterar");
                 getServletContext()
-                        .getRequestDispatcher("/CadastroConsulta.jsp")
+                        .getRequestDispatcher("/CadastroAlteracaoConsulta.jsp")
                         .forward(request, response);
             } else {
                 response.sendRedirect("ConsultaJSP");
@@ -56,7 +79,7 @@ public class ConsultaJSP extends HttpServlet {
 
         List<Consulta> consultas = consultaRepo.listarTodas();
         request.getSession().setAttribute("consultas", consultas);
-        response.sendRedirect("Consultas.jsp"); // ajustado para redirecionar para a lista
+        response.sendRedirect("Consultas.jsp");
     }
 
     @Override
@@ -75,12 +98,12 @@ public class ConsultaJSP extends HttpServlet {
 
         if (!medico.isPresent() || !paciente.isPresent()) {
             request.getSession().setAttribute("msg", "Erro: Médico ou paciente não encontrado.");
-            response.sendRedirect("CadastroConsulta.jsp");
+            response.sendRedirect("CadastroAlteracaoConsulta.jsp");
             return;
         }
 
         int codigo = Integer.parseInt(request.getParameter("codigo"));
-        
+
         Consulta c = new Consulta(codigo, dataHora, medico.get(), paciente.get());
 
         if ("alterar".equals(operation)) {

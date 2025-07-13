@@ -23,8 +23,7 @@
             <c:remove var="msg" scope="session" />
         </c:if>
 
-        <a class="btn btn-success mb-3" href="CadastroConsulta.jsp">Nova Consulta</a>
-        <a class="btn btn-secondary mb-3" href="CadastroConsulta.jsp">Voltar</a>
+        <a class="btn btn-secondary mb-3" href="CadastroAlteracaoConsulta.jsp">Voltar</a>
 
         <table class="table table-striped table-bordered">
             <thead class="table-dark">

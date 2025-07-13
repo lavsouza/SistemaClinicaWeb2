@@ -16,7 +16,7 @@
     </head>
     <body class="bg-light">
         <div class="container mt-5">
-            
+
             <c:if test="${not empty sessionScope.msg}">
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
                     ${sessionScope.msg}
@@ -100,7 +100,7 @@
                         <div class="card-body">
                             <strong>Paciente:</strong> ${c.paciente.nome}<br>
                             <strong>Data:</strong> ${c.dataHora}<br>
-                            <a href="DetalharConsulta.jsp?codigo=${c.codigo}" class="btn btn-primary btn-sm mt-2">Visualizar</a>
+                            <a href="ConsultaJSP?codigo=${c.codigo}&op=visualizar" class="btn btn-primary btn-sm mt-2">Visualizar</a>
                         </div>
                     </div>
                 </c:forEach>
@@ -116,7 +116,7 @@
                         <div class="card-body">
                             <strong>Paciente:</strong> ${c.paciente.nome}<br>
                             <strong>Data:</strong> ${c.dataHora}<br>
-                            <a href="DetalharConsulta.jsp?codigo=${c.codigo}" class="btn btn-secondary btn-sm mt-2">Visualizar</a>
+                            <a href="ConsultaJSP?codigo=${c.codigo}&op=visualizar" class="btn btn-secondary btn-sm mt-2">Visualizar</a>
                         </div>
                     </div>
                 </c:forEach>

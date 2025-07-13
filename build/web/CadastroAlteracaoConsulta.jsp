@@ -36,7 +36,7 @@
 
             <div class="mb-3">
                 <label for="codigo" class="form-label">Código da Consulta:</label>
-                <input type="number" class="form-control" id="codigo" name="codigo"
+                <input type="number" class="form-control" id="codigo" name="codigo" required
                        <c:if test="${op eq 'alterar'}">readonly</c:if>
                        value="${consulta.codigo}"/>
             </div>
