@@ -53,25 +53,6 @@
                 <div class="col-md-6">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title">Pacientes</h5>
-                            <a href="CadastroAlteracaoPaciente.jsp" class="btn btn-primary mb-2">Cadastrar</a>
-                            <a href="PacienteJSP" class="btn btn-outline-primary">Listar</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Médicos</h5>
-                            <a href="MedicoJSP" class="btn btn-outline-primary">Listar</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
                             <h5 class="card-title">Medicamentos</h5>
                             <a href="CadastroAlteracaoMedicamento.jsp" class="btn btn-primary mb-2">Cadastrar</a>
                             <a href="MedicamentoJSP" class="btn btn-outline-primary">Listar</a>

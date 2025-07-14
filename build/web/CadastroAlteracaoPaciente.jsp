@@ -75,7 +75,7 @@
 
             <c:choose>
                 <c:when test="${not modal}">
-                    <a href="${op == 'alterar' ? 'Pacientes.jsp' : 'TelaInicialMedico.jsp'}" class="btn btn-secondary">Voltar</a>
+                    <a href="${op == 'alterar' ? 'Pacientes.jsp' : 'TelaInicial.html'}" class="btn btn-secondary">Voltar</a>
                 </c:when>
             </c:choose>
         </div>

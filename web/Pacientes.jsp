@@ -24,14 +24,14 @@
         </c:if>
 
         <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#modalCadastro">Novo Paciente</button>
-        <a class="btn btn-secondary mb-3" href="TelaInicialMedico.jsp">Voltar</a>
+        <a class="btn btn-secondary mb-3" href="TelaInicial.html">Voltar</a>
 
         <table class="table table-striped table-bordered">
             <thead class="table-dark">
                 <tr>
                     <th>CPF</th>
                     <th>Nome</th>
-                    <th>Endereço</th>
+                    <th>Endereçoo</th>
                     <th>Contato</th>
                     <th>Plano de Saúde</th>
                     <th>Ações</th>

@@ -4,19 +4,43 @@
         <meta charset="UTF-8">
         <title>Sistema de Clínica</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
     </head>
-    <body class="container text-center mt-5">
+    <body class="container d-flex flex-column min-vh-100 justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="card-title my-3 display-4">Sistema de Clínica Médica</h1>
+                    </div>
+                    <div class="card-body py-4">
+                        <p class="lead text-muted mb-4">Escolha uma das opções abaixo para continuar:</p>
 
-        <h1 class="mb-4">Sistema de Clínica</h1>
-
-        <p class="lead">Escolha uma das opções abaixo para continuar:</p>
-
-        <div class="d-grid gap-3 col-6 mx-auto mt-4">
-            <a href="LoginMedico.jsp" class="btn btn-primary btn-lg">Sou Médico</a>
-            <a href="CadastroAlteracaoConsulta.jsp" class="btn btn-success btn-lg">Cadastrar Consulta</a>
+                        <div class="d-grid gap-3 col-lg-8 col-md-10 mx-auto">
+                            <a href="LoginMedico.jsp" class="btn btn-primary btn-lg py-3">
+                                <i class="bi bi-person-badge me-2"></i>Sou Médico
+                            </a>
+                            <a href="CadastroAlteracaoConsulta.jsp" class="btn btn-success btn-lg py-3">
+                                <i class="bi bi-calendar-plus me-2"></i>Cadastrar Consulta
+                            </a>
+                            <a href="CadastroAlteracaoPaciente.jsp" class="btn btn-success btn-lg py-3">
+                                <i class="bi bi-person-plus me-2"></i>Cadastrar Paciente
+                            </a>
+                            <a href="PacienteJSP" class="btn btn-info btn-lg py-3">
+                                <i class="bi bi-people me-2"></i>Listar Pacientes
+                            </a>
+                            <a href="MedicoJSP" class="btn btn-info btn-lg py-3">
+                                <i class="bi bi-person-lines-fill me-2"></i>Listar Médicos
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <small class="text-muted">Sistema Clínico © 2023</small>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </body>
+
 </html>

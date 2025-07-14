@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="web2" uri="web2.clinica.customTags" %>
 
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,7 @@
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
     <body class="container mt-5">
+         <web2:carregaTag entidade="medico" var="medico" escopo="pagina" id="${crm}" />
 
         <h1 class="mb-4">
             <c:choose>
