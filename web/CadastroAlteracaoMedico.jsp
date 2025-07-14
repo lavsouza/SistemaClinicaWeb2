@@ -12,74 +12,97 @@
             </c:choose>
             Médico
         </title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     </head>
-    <body class="container mt-5">
-         <web2:carregaTag entidade="medico" var="medico" escopo="pagina" id="${crm}" />
+    <body class="bg-light">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="card shadow-lg">
+                        <div class="card-header bg-primary text-white">
+                            <h1 class="card-title mb-0">
+                                <i class="bi bi-person-badge me-2"></i>
+                                <c:choose>
+                                    <c:when test="${not empty op}">Alterar</c:when>
+                                    <c:otherwise>Cadastrar</c:otherwise>
+                                </c:choose>
+                                Médico
+                            </h1>
+                        </div>
 
-        <h1 class="mb-4">
-            <c:choose>
-                <c:when test="${not empty op}">Alterar</c:when>
-                <c:otherwise>Cadastrar</c:otherwise>
-            </c:choose>
-            Médico
-        </h1>
+                        <div class="card-body">
+                            <web2:carregaTag entidade="medico" var="medico" escopo="pagina" id="${crm}" />
 
-        <form method="post" action="MedicoJSP">
+                            <form method="post" action="MedicoJSP" class="needs-validation" novalidate>
+                                <c:choose>
+                                    <c:when test="${not empty op}">
+                                        <input type="hidden" name="op" value="alterar"/>
+                                        <input type="hidden" name="crm" value="${medico.crm}"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="mb-3">
+                                            <label for="crm" class="form-label">CRM:</label>
+                                            <input type="text" name="crm" id="crm" class="form-control" required/>
+                                            <div class="invalid-feedback">Por favor, informe o CRM.</div>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
 
-            <c:choose>
-                <c:when test="${not empty op}">
-                    <input type="hidden" name="op" value="alterar"/>
-                    <input type="hidden" name="crm" value="${medico.crm}"/>
-                </c:when>
-                <c:otherwise>
-                    <div class="mb-3">
-                        <label for="crm" class="form-label">CRM:</label>
-                        <input type="text" name="crm" id="crm" class="form-control" required/>
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <label for="nome" class="form-label">Nome Completo:</label>
+                                        <input type="text" name="nome" id="nome" class="form-control" 
+                                               value="${medico.nome}" required/>
+                                        <div class="invalid-feedback">Por favor, informe o nome.</div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="especialidade" class="form-label">Especialidade:</label>
+                                        <input type="text" name="especialidade" id="especialidade" class="form-control" 
+                                               value="${medico.especialidade}" required/>
+                                        <div class="invalid-feedback">Por favor, informe a especialidade.</div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="contato" class="form-label">Contato:</label>
+                                        <input type="text" name="contato" id="contato" class="form-control" 
+                                               value="${medico.contato}" required/>
+                                        <div class="invalid-feedback">Por favor, informe o contato.</div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label for="senha" class="form-label">Senha:</label>
+                                        <input type="password" name="senha" id="senha" class="form-control" 
+                                               value="${medico.senha}" required/>
+                                        <div class="invalid-feedback">Por favor, informe a senha.</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                    <c:if test="${empty modal}">
+                                        <a href="${not empty op ? 'TelaInicialMedico.jsp' : 'LoginMedico.jsp'}" class="btn btn-secondary me-md-2">
+                                            <i class="bi bi-arrow-left"></i> Voltar
+                                        </a>
+                                    </c:if>
+                                    <button class="btn btn-primary" type="submit">
+                                        <c:choose>
+                                            <c:when test="${not empty op}">
+                                                <i class="bi bi-pencil-square"></i> Alterar
+                                            </c:when>
+                                            <c:otherwise>
+                                                <i class="bi bi-save"></i> Cadastrar
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </c:otherwise>
-            </c:choose>
-
-            <div class="mb-3">
-                <label for="nome" class="form-label">Nome:</label>
-                <input type="text" name="nome" id="nome" class="form-control" value="${medico.nome}" required/>
+                </div>
             </div>
+        </div>
 
-            <div class="mb-3">
-                <label for="especialidade" class="form-label">Especialidade:</label>
-                <input type="text" name="especialidade" id="especialidade" class="form-control" value="${medico.especialidade}" required/>
-            </div>
-
-            <div class="mb-3">
-                <label for="contato" class="form-label">Contato:</label>
-                <input type="text" name="contato" id="contato" class="form-control" value="${medico.contato}" required/>
-            </div>
-
-            <div class="mb-3">
-                <label for="senha" class="form-label">Senha:</label>
-                <input type="password" name="senha" id="senha" class="form-control" value="${medico.senha}" required/>
-            </div>
-
-            <div>
-                <button class="btn btn-primary" type="submit">
-                    <c:choose>
-                        <c:when test="${not empty op}">Alterar</c:when>
-                        <c:otherwise>Cadastrar</c:otherwise>
-                    </c:choose>
-                </button>
-
-                <c:choose>
-                    <c:when test="${not modal}">
-                        <a href="${not empty op ? 'TelaInicialMedico.jsp' : 'LoginMedico.jsp'}" class="btn btn-secondary">Voltar</a>
-                    </c:when>
-                </c:choose>
-            </div>
-
-        </form>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

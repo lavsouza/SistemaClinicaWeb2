@@ -94,16 +94,36 @@ public class CarregaTag extends SimpleTagSupport {
                     resultado = consultaRepo.listarTodas();
                 }
                 break;
+            case "itemexame":
+                ItemExameRepository itemRepo = new ItemExameRepository();
+                if (id != null) {
+                    try {
+                        resultado = itemRepo.buscarPorCodigo(Integer.parseInt(id)).orElse(null);
+                    } catch (NumberFormatException e) {
+                        resultado = null;
+                    }
+                } else {
+                    resultado = itemRepo.listarTodos();
+                }
+                break;
         }
 
         int scope = PageContext.PAGE_SCOPE;
         switch (escopo.toLowerCase()) {
-            case "pagina": scope = PageContext.PAGE_SCOPE; break;
-            case "requisicao": scope = PageContext.REQUEST_SCOPE; break;
-            case "sessao": scope = PageContext.SESSION_SCOPE; break;
-            case "aplicacao": scope = PageContext.APPLICATION_SCOPE; break;
+            case "pagina":
+                scope = PageContext.PAGE_SCOPE;
+                break;
+            case "requisicao":
+                scope = PageContext.REQUEST_SCOPE;
+                break;
+            case "sessao":
+                scope = PageContext.SESSION_SCOPE;
+                break;
+            case "aplicacao":
+                scope = PageContext.APPLICATION_SCOPE;
+                break;
         }
-        
+
         getJspContext().setAttribute(var, resultado, scope);
     }
 }

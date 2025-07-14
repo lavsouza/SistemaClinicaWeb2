@@ -69,7 +69,19 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Itens Exame</h5>
+                            <a href="CadastroAlteracaoItemExame.jsp" class="btn btn-primary mb-2">Cadastrar</a>
+                            <a href="ItemExameJSP" class="btn btn-outline-primary">Listar</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
 
             <div class="mt-5">
                 <h4>Consultas Ainda Não Realizadas</h4>

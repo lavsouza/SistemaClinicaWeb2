@@ -6,6 +6,13 @@ public class ItemExame {
     private String observacao;
     private IndicadorExame indicador;
 
+    public ItemExame(int codigo, String valorIndicador, String observacao, IndicadorExame indicador) {
+        this.codigo = codigo;
+        this.valorIndicador = valorIndicador;
+        this.observacao = observacao;
+        this.indicador = indicador;
+    }
+    
     public IndicadorExame getIndicador() {
         return indicador;
     }
