@@ -54,16 +54,19 @@
                 </c:choose>
             </tbody>
         </table>
-
         <div class="modal fade" id="modalCadastro" data-bs-backdrop="static" data-bs-keyboard="false"
              tabindex="-1" aria-labelledby="modalCadastroLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalCadastroLabel">Cadastrar Médico</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title fs-4" id="modalCadastroLabel">
+                            <i class="bi bi-person-plus-fill me-2"></i>
+                            Cadastrar Médico
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body p-4">
                         <c:set var="modal" value="true" scope="request"/>
                         <%@include file="CadastroAlteracaoMedico.jsp" %>
                     </div>

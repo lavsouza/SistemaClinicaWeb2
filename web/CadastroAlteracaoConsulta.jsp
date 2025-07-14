@@ -100,7 +100,7 @@
 
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
                                     <c:if test="${empty modal}">
-                                        <a href="${not empty op ? 'Consultas.jsp' : 'TelaInicial.jsp'}" class="btn btn-secondary me-md-2">
+                                        <a href="${not empty op ? 'Consultas.jsp' : 'TelaInicial.html'}" class="btn btn-secondary me-md-2">
                                             <i class="bi bi-arrow-left"></i> Voltar
                                         </a>
                                     </c:if>
