@@ -23,7 +23,7 @@
     </head>
     <body class="bg-light">
         <web2:carregaTag entidade="medicamento" var="medicamentos" escopo="pagina" />
-        <web2:carregaTag entidade="itemexame" var="todosItensExame" escopo="pagina" />
+        <web2:carregaTag entidade="indicadorexame" var="todosIndicadores" escopo="pagina" />
 
         <div class="container mt-4">
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -259,7 +259,7 @@
             }
             request.setAttribute("itensExame", itensExame);
         %>
-        <!-- Modal -->
+
         <div class="modal fade" id="modalExame" tabindex="-1" aria-labelledby="modalExameLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
@@ -277,7 +277,7 @@
                             </div>
 
                             <h5>Itens do Exame</h5>
-                            <c:forEach var="i" begin="0" end="${itensExameCount - 1}">
+                            <c:forEach var="i" begin="0" end="${todosIndicadoresCount - 1}">
                                 <c:set var="itemSelecionado" value="${itensExame[i]}" />
 
                                 <div class="row border rounded p-3 mb-3">
@@ -285,12 +285,12 @@
                                         <label>Indicador do Exame</label>
                                         <select class="form-select" name="codigoIndicador">
                                             <option value="">Selecione</option>
-                                            <c:forEach var="itemPossivel" items="${todosItensExame}">
-                                                <option value="${itemPossivel.codigo}"
-                                                        <c:if test="${not empty itemSelecionado and itemSelecionado.indicador.codigo == itemPossivel.codigo}">
+                                            <c:forEach var="indicador" items="${todosIndicadores}">
+                                                <option value="${indicador.codigo}"
+                                                        <c:if test="${not empty itemSelecionado and itemSelecionado.indicador.codigo == indicador.codigo}">
                                                             selected
                                                         </c:if>>
-                                                    ${itemPossivel.indicador.nome}
+                                                    ${indicador.indicador}
                                                 </option>
                                             </c:forEach>
                                         </select>

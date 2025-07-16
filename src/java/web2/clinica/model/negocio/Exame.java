@@ -1,11 +1,13 @@
 package web2.clinica.model.negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Exame {
+
     private int codigo;
     private String observacao;
-    private List<ItemExame> itens;
+    private List<ItemExame> itens = new ArrayList<>();
     private Consulta consulta;
 
     public Consulta getConsulta() {
