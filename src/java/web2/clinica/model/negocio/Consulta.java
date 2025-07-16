@@ -13,6 +13,15 @@ public class Consulta {
     private Paciente paciente;
     private Prontuario prontuario;
     private Receituario receituario;
+    private Exame exame;
+
+    public Exame getExame() {
+        return exame;
+    }
+
+    public void setExame(Exame exame) {
+        this.exame = exame;
+    }
 
     public Receituario getReceituario() {
         return receituario;

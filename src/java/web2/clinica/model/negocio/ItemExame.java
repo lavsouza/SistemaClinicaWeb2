@@ -5,6 +5,15 @@ public class ItemExame {
     private String valorIndicador;
     private String observacao;
     private IndicadorExame indicador;
+    private Exame exame;
+
+    public Exame getExame() {
+        return exame;
+    }
+
+    public void setExame(Exame exame) {
+        this.exame = exame;
+    }
 
     public ItemExame(int codigo, String valorIndicador, String observacao, IndicadorExame indicador) {
         this.codigo = codigo;

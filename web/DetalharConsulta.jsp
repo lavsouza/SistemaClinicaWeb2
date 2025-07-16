@@ -1,3 +1,4 @@
+<%@page import="web2.clinica.model.negocio.ItemExame"%>
 <%@page import="web2.clinica.model.negocio.Consulta"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="web2.clinica.model.negocio.ItemReceituario"%>
@@ -22,6 +23,7 @@
     </head>
     <body class="bg-light">
         <web2:carregaTag entidade="medicamento" var="medicamentos" escopo="pagina" />
+        <web2:carregaTag entidade="itemexame" var="todosItensExame" escopo="pagina" />
 
         <div class="container mt-4">
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -125,6 +127,12 @@
                                     </button>
                                 </div>
 
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label d-block">Exames</label>
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalExame">
+                                        Visualizar Exames
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -173,12 +181,12 @@
         </div>
 
         <%
-            List<ItemReceituario> itens = new ArrayList<>();
+            List<ItemReceituario> itensR = new ArrayList<>();
             Consulta consulta = (Consulta) request.getAttribute("consulta");
             if (consulta != null && consulta.getReceituario() != null && consulta.getReceituario().getItensReceituario() != null) {
-                itens = consulta.getReceituario().getItensReceituario();
+                itensR = consulta.getReceituario().getItensReceituario();
             }
-            request.setAttribute("itensReceituario", itens);
+            request.setAttribute("itensReceituario", itensR);
         %>
         <div class="modal fade" id="modalReceituario" tabindex="-1" aria-labelledby="modalReceituarioLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
@@ -235,6 +243,72 @@
                             </c:forEach>
                         </div>
 
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <%
+            List<ItemExame> itensExame = new ArrayList<>();
+            if (consulta != null && consulta.getExame() != null && consulta.getExame().getItens() != null) {
+                itensExame = consulta.getExame().getItens();
+            }
+            request.setAttribute("itensExame", itensExame);
+        %>
+        <!-- Modal -->
+        <div class="modal fade" id="modalExame" tabindex="-1" aria-labelledby="modalExameLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <form method="post" action="ExameJSP">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalExameLabel">Exame</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="codigoConsulta" value="${consulta.codigo}" />
+
+                            <div class="mb-3">
+                                <label for="observacao" class="form-label">Observações gerais</label>
+                                <textarea class="form-control" id="observacao" name="observacao" rows="3" required>${consulta.exame.observacao}</textarea>
+                            </div>
+
+                            <h5>Itens do Exame</h5>
+                            <c:forEach var="i" begin="0" end="${itensExameCount - 1}">
+                                <c:set var="itemSelecionado" value="${itensExame[i]}" />
+
+                                <div class="row border rounded p-3 mb-3">
+                                    <div class="col-md-4">
+                                        <label>Indicador do Exame</label>
+                                        <select class="form-select" name="codigoIndicador">
+                                            <option value="">Selecione</option>
+                                            <c:forEach var="itemPossivel" items="${todosItensExame}">
+                                                <option value="${itemPossivel.codigo}"
+                                                        <c:if test="${not empty itemSelecionado and itemSelecionado.indicador.codigo == itemPossivel.codigo}">
+                                                            selected
+                                                        </c:if>>
+                                                    ${itemPossivel.indicador.nome}
+                                                </option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label>Valor do Indicador</label>
+                                        <input type="text" class="form-control" name="valorIndicador" value="${not empty itemSelecionado ? itemSelecionado.valorIndicador : ''}" />
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label>Observação</label>
+                                        <input type="text" class="form-control" name="observacaoItem" value="${not empty itemSelecionado ? itemSelecionado.observacao : ''}" />
+                                    </div>
+                                </div>
+                            </c:forEach>
+
+                        </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Salvar</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

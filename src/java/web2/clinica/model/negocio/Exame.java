@@ -6,6 +6,15 @@ public class Exame {
     private int codigo;
     private String observacao;
     private List<ItemExame> itens;
+    private Consulta consulta;
+
+    public Consulta getConsulta() {
+        return consulta;
+    }
+
+    public void setConsulta(Consulta consulta) {
+        this.consulta = consulta;
+    }
 
     public List<ItemExame> getItens() {
         return itens;
