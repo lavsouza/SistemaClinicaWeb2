@@ -125,5 +125,11 @@ public class CarregaTag extends SimpleTagSupport {
         }
 
         getJspContext().setAttribute(var, resultado, scope);
+
+        if (resultado instanceof java.util.List<?>) {
+            int size = ((java.util.List<?>) resultado).size();
+            getJspContext().setAttribute(var + "Count", size, scope);
+        }
     }
+
 }

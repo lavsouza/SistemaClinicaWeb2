@@ -1,5 +1,10 @@
+<%@page import="web2.clinica.model.negocio.Consulta"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="web2.clinica.model.negocio.ItemReceituario"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="web2" uri="web2.clinica.customTags" %>
 
 <c:if test="${empty sessionScope.medicoLogado}">
     <c:redirect url="LoginMedico.jsp" />
@@ -16,6 +21,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </head>
     <body class="bg-light">
+        <web2:carregaTag entidade="medicamento" var="medicamentos" escopo="pagina" />
+
         <div class="container mt-4">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="text-primary">
@@ -111,6 +118,13 @@
                                     </button>
                                 </div>
 
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label d-block">Receituário</label>
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalReceituario">
+                                        Visualizar Receituário
+                                    </button>
+                                </div>
+
                             </form>
                         </div>
                     </div>
@@ -147,6 +161,78 @@
                                 <label for="descricao" class="form-label">Descrição</label>
                                 <textarea class="form-control" id="descricao" name="descricao" rows="3" required>${descricaoConteudo}</textarea>                            
                             </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <%
+            List<ItemReceituario> itens = new ArrayList<>();
+            Consulta consulta = (Consulta) request.getAttribute("consulta");
+            if (consulta != null && consulta.getReceituario() != null && consulta.getReceituario().getItensReceituario() != null) {
+                itens = consulta.getReceituario().getItensReceituario();
+            }
+            request.setAttribute("itensReceituario", itens);
+        %>
+        <div class="modal fade" id="modalReceituario" tabindex="-1" aria-labelledby="modalReceituarioLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <form method="post" action="ReceituarioJSP">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Receituário</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="codigoConsulta" value="${consulta.codigo}" />
+
+                            <div class="mb-3">
+                                <label for="observacao" class="form-label">Observações gerais</label>
+                                <textarea class="form-control" id="observacao" name="observacao" rows="3" required>${consulta.receituario.observacao}</textarea>
+
+                            </div>
+                            <h5>Itens do Receituário</h5>
+                            <c:set var="fim" value="${medicamentosCount - 1}" />
+                            <c:forEach var="i" begin="0" end="${fim}">
+                                <c:set var="item" value="${itensReceituario[i]}" />
+                                <div class="row border rounded p-3 mb-3">
+                                    <div class="col-md-3">
+                                        <label>Medicamento</label>
+                                        <select class="form-select" name="medicamentoCodigo">
+                                            <option value="">Selecione</option>
+                                            <c:forEach var="m" items="${medicamentos}">
+                                                <option value="${m.codigo}"
+                                                        <c:if test="${not empty item and item.medicamento.codigo == m.codigo}">selected</c:if>>
+                                                    ${m.nome} - ${m.dosagem}${m.tipoDosagem}
+                                                </option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <label>Dosagem</label>
+                                        <input type="number" class="form-control" name="dosagem"
+                                               value="${not empty item ? item.dosagem : ''}" />
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <label>Intervalo (h)</label>
+                                        <input type="number" class="form-control" name="intervalo"
+                                               value="${not empty item ? item.intervalorEntreDoses : ''}" />
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <label>Observação</label>
+                                        <input type="text" class="form-control" name="obsItem"
+                                               value="${not empty item ? item.observacao : ''}" />
+                                    </div>
+                                </div>
+                            </c:forEach>
                         </div>
 
                         <div class="modal-footer">

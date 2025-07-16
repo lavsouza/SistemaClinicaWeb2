@@ -29,7 +29,7 @@ public class MedicamentoRepository {
         return medicamentos;
     }
 
-    public Optional<Medicamento> buscarPorCodigo(int codigo) {
+    static public Optional<Medicamento> buscarPorCodigo(int codigo) {
         return medicamentos.stream()
                 .filter(m -> m.getCodigo() == codigo)
                 .findFirst();

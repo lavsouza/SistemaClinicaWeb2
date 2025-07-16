@@ -6,6 +6,15 @@ public class ItemReceituario {
     private int intervalorEntreDoses;
     private String observacao;
     private Medicamento medicamento;
+    private Receituario receituario;
+
+    public Receituario getReceituario() {
+        return receituario;
+    }
+
+    public void setReceituario(Receituario receituario) {
+        this.receituario = receituario;
+    }
 
     public int getCodigo() {
         return codigo;

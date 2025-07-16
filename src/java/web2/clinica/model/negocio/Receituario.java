@@ -6,6 +6,15 @@ public class Receituario {
     private int codigo;
     private String observacao;
     private List<ItemReceituario> itensReceituario;
+    private Consulta consulta;
+    
+    public Consulta getConsulta() {
+        return consulta;
+    }
+
+    public void setConsulta(Consulta consulta) {
+        this.consulta = consulta;
+    }
 
     public List<ItemReceituario> getItensReceituario() {
         return itensReceituario;

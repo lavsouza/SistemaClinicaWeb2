@@ -3,6 +3,7 @@ package web2.clinica.model.negocio;
 import java.util.List;
 
 public class Consulta {
+
     private int codigo;
     private String dataHora;
     private String dataHoraVolta;
@@ -11,6 +12,15 @@ public class Consulta {
     private Medico medico;
     private Paciente paciente;
     private Prontuario prontuario;
+    private Receituario receituario;
+
+    public Receituario getReceituario() {
+        return receituario;
+    }
+
+    public void setReceituario(Receituario receituario) {
+        this.receituario = receituario;
+    }
 
     public Consulta(int codigo, String dataHora, Medico medico, Paciente paciente) {
         this.codigo = codigo;
@@ -20,7 +30,7 @@ public class Consulta {
     }
 
     public Consulta() {
-        
+
     }
 
     public Prontuario getProntuario() {
@@ -79,4 +89,3 @@ public class Consulta {
         this.observacao = observacao;
     }
 }
-
