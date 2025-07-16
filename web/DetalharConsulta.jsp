@@ -48,14 +48,14 @@
                                 </div>
                                 <div class="col-md-6">
                                     <p><strong>Retorno:</strong> 
-                                    <c:choose>
-                                        <c:when test="${not empty consulta.dataHoraVolta}">
-                                            ${consulta.dataHoraVolta}
-                                        </c:when>
-                                        <c:otherwise>
-                                            <span class="text-muted">Não agendado</span>
-                                        </c:otherwise>
-                                    </c:choose>
+                                        <c:choose>
+                                            <c:when test="${not empty consulta.dataHoraVolta}">
+                                                ${consulta.dataHoraVolta}
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="text-muted">Não agendado</span>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </p>
                                     <p><strong>Status:</strong> 
                                         <span class="badge ${consulta.prontuario != null ? 'bg-success' : 'bg-warning text-dark'}">
@@ -99,46 +99,18 @@
                         </div>
                         <div class="card-body">
                             <form action="ConsultaJSP" method="post">
-                                <input type="hidden" name="codigo" value="${consulta.codigo}">
-
-                                <div class="mb-3">
-                                    <label for="observacao" class="form-label">Observações:</label>
-                                    <textarea class="form-control" id="observacao" name="observacao" rows="3">${consulta.observacao}</textarea>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="prontuario" class="form-label">Prontuário:</label>
-                                    <textarea class="form-control" id="prontuario" name="prontuario" rows="5"
-                                              ${consulta.prontuario != null ? 'readonly' : ''}>${consulta.prontuario != null ? consulta.prontuario.conteudo : ''}</textarea>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="receituario" class="form-label">Receituário:</label>
-                                    <textarea class="form-control" id="receituario" name="receituario" rows="3"></textarea>
-                                    <small class="text-muted">Liste os medicamentos e posologias</small>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="exames" class="form-label">Exames Solicitados:</label>
-                                    <textarea class="form-control" id="exames" name="exames" rows="2"></textarea>
-                                    <small class="text-muted">Informe os exames necessários</small>
-                                </div>
-
                                 <div class="mb-3 col-md-4">
                                     <label for="dataRetorno" class="form-label">Agendar Retorno:</label>
                                     <input type="datetime-local" class="form-control" id="dataRetorno" name="dataRetorno">
                                 </div>
 
-                                <div class="d-flex justify-content-end gap-2">
-                                    <button type="submit" class="btn btn-primary" name="op" value="salvar">
-                                        <i class="fas fa-save me-1"></i> Salvar
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label d-block">Prontuário</label>
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalProntuario">
+                                        Vizualizar Prontuário
                                     </button>
-                                    <c:if test="${consulta.prontuario == null}">
-                                        <button type="submit" class="btn btn-success" name="op" value="finalizar">
-                                            <i class="fas fa-check-circle me-1"></i> Finalizar Consulta
-                                        </button>
-                                    </c:if>
                                 </div>
+
                             </form>
                         </div>
                     </div>
@@ -146,6 +118,45 @@
             </div>
         </div>
 
+        <div class="modal fade" id="modalProntuario" tabindex="-1" aria-labelledby="modalProntuarioLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form method="post" action="ProntuarioJSP">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalProntuarioLabel">Prontuário</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="op" value="salvar"/>
+                            <input type="hidden" name="codigoConsulta" value="${consulta.codigo}"/>
+
+                            <c:set var="observacoesConteudo" value="" />
+                            <c:set var="descricaoConteudo" value="" />
+
+                            <c:if test="${not empty consulta.prontuario}">
+                                <c:set var="observacoesConteudo" value="${consulta.prontuario.observacao}" />
+                                <c:set var="descricaoConteudo" value="${consulta.prontuario.descricao}" />
+                            </c:if>
+
+                            <div class="mb-3">
+                                <label for="observacoes" class="form-label">Observações</label>
+                                <textarea class="form-control" id="observacoes" name="observacoes" rows="3" required>${observacoesConteudo}</textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="descricao" class="form-label">Descrição</label>
+                                <textarea class="form-control" id="descricao" name="descricao" rows="3" required>${descricaoConteudo}</textarea>                            
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>

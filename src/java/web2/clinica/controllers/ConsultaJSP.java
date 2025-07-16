@@ -42,7 +42,6 @@ public class ConsultaJSP extends HttpServlet {
 
             if (consultaOpt.isPresent()) {
                 Consulta consulta = consultaOpt.get();
-                // Divide a dataHora para exibição no formulário
                 String[] partes = consulta.getDataHora().split(" : ");
 
                 request.setAttribute("data", partes[0]);

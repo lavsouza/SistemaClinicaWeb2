@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/src/java/web2/clinica/model/repositorios/MedicoRepository.java</file>
-            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/web/TelaInicialMedico.jsp</file>
-            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/web/LoginMedico.jsp</file>
-            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/web/META-INF/context.xml</file>
-            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/src/java/web2/clinica/model/negocio/Consulta.java</file>
+            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/src/java/web2/clinica/model/negocio/Prontuario.java</file>
+            <file>file:/C:/Users/lucas/Desktop/Faculdade%202025.1/Desenvolvimento%20Web%202/SistemaClinica/web/DetalharConsulta.jsp</file>
         </group>
     </open-files>
 </project-private>

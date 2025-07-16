@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class PacienteRepository  {
+public class PacienteRepository {
+
     private static List<Paciente> paciente;
 
     static {
-        PacienteRepository.paciente = new ArrayList<>();
-    }
-    
-    static {
+        paciente = new ArrayList<>();
         paciente.add(new Paciente("111.111.111-11", "Maria Souza", "Rua A", "11-9999-0001", "Unimed"));
         paciente.add(new Paciente("222.222.222-22", "Carlos Silva", "Rua B", "11-9999-0002", "Bradesco"));
         paciente.add(new Paciente("333.333.333-33", "Fernanda Rocha", "Rua C", "11-9999-0003", "Amil"));

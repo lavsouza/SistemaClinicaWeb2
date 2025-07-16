@@ -19,6 +19,10 @@ public class Consulta {
         this.paciente = paciente;
     }
 
+    public Consulta() {
+        
+    }
+
     public Prontuario getProntuario() {
         return prontuario;
     }
