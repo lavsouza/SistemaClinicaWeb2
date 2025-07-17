@@ -86,10 +86,43 @@ public class ConsultaJSP extends HttpServlet {
             throws ServletException, IOException {
 
         String operation = request.getParameter("op");
+
+        if ("dataAlt".equals(operation)) {
+            String codigoStr = request.getParameter("codigo");
+            String dataRetorno = request.getParameter("dataRetorno");
+
+            if (codigoStr == null || dataRetorno == null || dataRetorno.trim().isEmpty()) {
+                request.getSession().setAttribute("msg", "Erro: Código da consulta ou data de retorno inválidos.");
+                response.sendRedirect("DetalharConsulta.jsp"); // Ou a página atual
+                return;
+            }
+
+            int codigo = Integer.parseInt(codigoStr);
+
+            Optional<Consulta> consultaOpt = consultaRepo.buscarPorCodigo(codigo);
+            if (consultaOpt.isPresent()) {
+                Consulta consulta = consultaOpt.get();
+                consulta.setDataHoraVolta(dataRetorno); // Supondo que você tem esse método
+
+                // Atualizar a consulta no repositório
+                consultaRepo.deletar(codigo);
+                consultaRepo.salvar(consulta);
+
+                request.getSession().setAttribute("msg", "Data de retorno atualizada com sucesso!");
+                response.sendRedirect("ConsultaJSP?codigo=" + codigo + "&op=visualizar");
+            } else {
+                request.getSession().setAttribute("msg", "Consulta não encontrada.");
+                response.sendRedirect("ConsultaJSP");
+            }
+
+            return;
+        }
+        
         String data = request.getParameter("data");
         String hora = request.getParameter("hora");
         String cpf = request.getParameter("cpf");
         String crm = request.getParameter("crm");
+        String dataRetorno = request.getParameter("dataRetorno");
 
         String dataHora = data + " : " + hora;
         Optional<Medico> medico = MedicoRepository.buscarPorCrm(crm);

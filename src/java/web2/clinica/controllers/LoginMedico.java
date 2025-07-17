@@ -27,6 +27,31 @@ import web2.clinica.model.negocio.Consulta;
 @WebServlet(name = "LoginMedico", urlPatterns = {"/LoginMedico"})
 public class LoginMedico extends HttpServlet {
 
+    ConsultaRepository consultaRepo = new ConsultaRepository();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        Medico medicoLogado = (Medico) request.getSession().getAttribute("medicoLogado");
+
+        if (medicoLogado == null) {
+            response.sendRedirect("LoginMedico.jsp");
+            return;
+        }
+
+        String crm = medicoLogado.getCrm();
+
+        List<Consulta> consultasSemProntuario = consultaRepo.listarPorCrmMedicoSemProntuario(crm);
+        List<Consulta> consultasComProntuario = consultaRepo.listarPorCrmMedicoComProntuario(crm);
+
+        request.getSession().setAttribute("consultasSemProntuario", consultasSemProntuario);
+        request.getSession().setAttribute("consultasComProntuario", consultasComProntuario);
+
+        request.getRequestDispatcher("TelaInicialMedico.jsp").forward(request, response);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -35,10 +60,8 @@ public class LoginMedico extends HttpServlet {
 
         Optional<Medico> medico = MedicoRepository.buscarPorCrm(crm);
 
-        ConsultaRepository consultaRepo = new ConsultaRepository();
-
         if (medico.isPresent() && medico.get().getSenha().equals(senha)) {
-            
+
             List<Consulta> consultasSemProntuario = consultaRepo.listarPorCrmMedicoSemProntuario(crm);
             List<Consulta> consultasComProntuario = consultaRepo.listarPorCrmMedicoComProntuario(crm);
 

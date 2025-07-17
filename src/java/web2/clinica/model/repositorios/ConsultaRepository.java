@@ -69,4 +69,14 @@ public class ConsultaRepository {
     public void deletar(int codigo) {
         consultas.removeIf(c -> c.getCodigo() == codigo);
     }
+
+    public void atualizar(Consulta consulta) {
+        for (int i = 0; i < consultas.size(); i++) {
+            if (consultas.get(i).getCodigo() == consulta.getCodigo()) {
+                consultas.set(i, consulta);
+                return;
+            }
+        }
+        salvar(consulta);
+    }
 }

@@ -30,7 +30,7 @@
                 <h2 class="text-primary">
                     <i class="fas fa-calendar-check me-2"></i>Detalhes da Consulta
                 </h2>
-                <a href="TelaInicialMedico.jsp" class="btn btn-outline-secondary">
+                <a href="LoginMedico" class="btn btn-outline-secondary">
                     <i class="fas fa-arrow-left me-1"></i> Voltar
                 </a>
             </div>
@@ -107,32 +107,53 @@
                             <i class="fas fa-notes-medical me-2"></i>Registro Médico
                         </div>
                         <div class="card-body">
-                            <form action="ConsultaJSP" method="post">
-                                <div class="mb-3 col-md-4">
-                                    <label for="dataRetorno" class="form-label">Agendar Retorno:</label>
-                                    <input type="datetime-local" class="form-control" id="dataRetorno" name="dataRetorno">
-                                </div>
+                            <form action="ConsultaJSP?op=dataAlt" method="post">
+                                <input type="hidden" name="codigo" value="${consulta.codigo}" />
+
+                                <c:if test="${not empty consulta.prontuario}">
+                                    <div class="mb-3 col-md-4">
+                                        <label for="dataRetorno" class="form-label">Agendar Retorno:</label>
+                                        <input type="datetime-local" class="form-control" id="dataRetorno" name="dataRetorno" />
+                                    </div>
+                                </c:if>
 
                                 <div class="mb-3 col-md-4">
                                     <label class="form-label d-block">Prontuário</label>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalProntuario">
-                                        Vizualizar Prontuário
+                                    <button type="button"
+                                            class="btn ${consulta.prontuario != null ? 'btn-success' : 'btn-secondary'}"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalProntuario">
+                                        ${consulta.prontuario != null ? 'Visualizar Prontuário' : 'Cadastrar Prontuário'}
                                     </button>
                                 </div>
 
                                 <div class="mb-3 col-md-4">
                                     <label class="form-label d-block">Receituário</label>
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalReceituario">
-                                        Visualizar Receituário
+                                    <button type="button"
+                                            class="btn ${consulta.receituario != null ? 'btn-success' : 'btn-secondary'}"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalReceituario">
+                                        ${consulta.receituario != null ? 'Visualizar Receituário' : 'Cadastrar Receituário'}
                                     </button>
                                 </div>
 
                                 <div class="mb-3 col-md-4">
                                     <label class="form-label d-block">Exames</label>
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalExame">
-                                        Visualizar Exames
+                                    <button type="button"
+                                            class="btn ${consulta.exame != null ? 'btn-success' : 'btn-secondary'}"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalExame">
+                                        ${consulta.exame != null ? 'Visualizar Exames' : 'Cadastrar Exame'}
                                     </button>
                                 </div>
+                                    
+                                <c:if test="${not empty consulta.prontuario}">
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    </div>
+                                </c:if>
+
                             </form>
                         </div>
                     </div>
